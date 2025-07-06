@@ -14,6 +14,7 @@ return {
     config = function() require("lsp_signature").setup() end,
   },
 
+  { "nguyenvukhang/nvim-toggler" },
   -- == Examples of Overriding Plugins ==
 
   -- customize dashboard options
@@ -80,6 +81,29 @@ return {
       )
     end,
   },
-
-  { 'echasnovski/mini.nvim', version = false },
+  { "echasnovski/mini.nvim", version = "*" },
+  {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "VeryLazy", -- Or `LspAttach`
+    priority = 1000, -- needs to be loaded in first
+    config = function()
+      require("tiny-inline-diagnostic").setup()
+      vim.diagnostic.config { virtual_text = false } -- Only if needed in your configuration, if you already have native LSP diagnostics
+    end,
+  },
+  {
+    "mistricky/codesnap.nvim",
+    build = "make",
+    opts = {
+      save_path = "~/Pictures",
+      has_breadcrumbs = true,
+      breadcrumbs_separator = "→",
+      has_line_number = true,
+      show_workspace = true,
+      bg_theme = "peach",
+      watermark = "",
+      code_font_family = "CartographCF Nerd Font",
+      mac_window_bar = true,
+    },
+  },
 }
